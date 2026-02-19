@@ -1,0 +1,88 @@
+/*********************************************
+ * OPL 22.1.1.0 Data
+ * Author: fabriciosiqueira
+ * Creation Date: 19 de fev. de 2026 at 20:47:53
+ *********************************************/
+// --- Definições de Escopo ---
+Proporcao_Demanda = 3;  // Terminais (1,2 e 3)
+Veiculos_Car = 4;       // Periodos (T1, T2, T3 e T4)
+Veiculos_Para = 1;      // 1 tipo de veiculo
+
+// --- Custos e Receitas ---
+// p[origem][destino][veículo]
+p = [
+  [[0], [500], [600]], // De 1 para (1, 2, 3)
+  [[450], [0], [550]], // De 2 para (1, 2, 3)
+  [[520], [480], [0]]  // De 3 para (1, 2, 3)
+];
+
+// c[origem][destino][veículo]
+c = [
+  [[5], [100], [120]],
+  [[100], [5], [90]],
+  [[120], [90], [5]]
+];
+
+// h[origem][destino][tempo]
+h = [
+  [[0,0,0,0], [50,60,70,80], [55,65,75,85]],
+  [[40,50,60,70], [0,0,0,0], [45,55,65,75]],
+  [[60,70,80,90], [50,60,70,80], [0,0,0,0]]
+];
+
+// --- Operação ---
+// tv[origem][destino]: Tempos de viagem diferentes
+tv = [
+  [0, 1, 1], // De 1 para 3 demora 1 período
+  [1, 0, 2], // De 2 para 3 demora 2 períodos (mais longe)
+  [1, 2, 0]  
+];
+
+// K[destino][tempo]: Capacidade dos terminais
+K = [
+  [5, 5, 5, 5], // Terminal 1
+  [4, 4, 4, 4], // Terminal 2
+  [6, 6, 6, 6]  // Terminal 3 (Maior capacidade)
+];
+
+// m[origem][veículo][tempo]: Frota inicial concentrada no tempo 1
+m = [
+  [[10, 0, 0, 0]], // T1 começa com 10
+  [[5, 0, 0, 0]],  // T2 começa com 5
+  [[8, 0, 0, 0]]   // T3 começa com 8
+];
+
+// A[origem][destino][veículo]: Todas as rotas permitidas
+A = [
+  [[1], [1], [1]],
+  [[1], [1], [1]],
+  [[1], [1], [1]]
+];
+
+// ==========================================
+// --- PARÂMETROS DE OTIMIZAÇÃO ROBUSTA ---
+// ==========================================
+
+// d[origem][destino][tempo]: Demanda Nominal
+d = [
+  [[0,0,0,0], [2,3,1,2], [1,2,0,1]],
+  [[1,2,2,1], [0,0,0,0], [2,1,1,2]],
+  [[2,0,1,1], [1,1,2,0], [0,0,0,0]]
+];
+
+// d_hat[origem][destino][tempo]: Incerteza (Desvio Máximo)
+d_hat = [
+  [[0,0,0,0], [1,2,1,1], [1,1,0,1]],
+  [[1,1,2,1], [0,0,0,0], [1,1,1,1]],
+  [[1,0,1,1], [1,1,1,0], [0,0,0,0]]
+];
+
+// Gamma0: Proteção global para a Função Objetivo
+Gamma0 = 3.0; 
+
+// Gamma[origem][destino][tempo]: Orçamento de incerteza crescente
+Gamma = [
+  [[0,0,0,0], [1,1,2,2], [1,1,1,2]],
+  [[1,1,2,2], [0,0,0,0], [1,1,2,2]],
+  [[1,1,1,2], [1,1,2,2], [0,0,0,0]]
+];

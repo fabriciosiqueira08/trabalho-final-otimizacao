@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ASCII"?><project>
+    	
+    <version>1.0</version>
+    	
+    <configs>
+        		
+        <config default="true" name="Modelo_3_1-caso-1" category="opl">
+            			
+            <ref name="trabalho-final-otimizacao.mod" type="model">
+			</ref>
+            			
+            <ref name="trabalho-final-otimizacao.ops" type="setting">
+			</ref>
+            			
+            <ref name="trabalho-final-otimizacao-caso-1.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Modelo_3_2-caso-2" category="opl">
+            			
+            <ref name="trabalho-final-otimizacao.mod" type="model">
+			</ref>
+            			
+            <ref name="trabalho-final-otimizacao.ops" type="setting">
+			</ref>
+            			
+            <ref name="trabalho-final-otimizacao-caso-2.dat" type="data">
+			</ref>
+            		
+        </config>
+        	
+    </configs>
+    	
+
+</project>

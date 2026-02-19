@@ -1,0 +1,79 @@
+/*********************************************
+ * OPL 22.1.1.0 Data
+ * Author: fabriciosiqueira
+ * Creation Date: 19 de fev. de 2026 at 20:26:07
+ *********************************************/
+// Escopo 
+Proporcao_Demanda = 2;  // Terminais (1 e 2)
+Veiculos_Car = 3;       // Períodos (t1, t2, t3)
+Veiculos_Para = 1;      // Apenas 1 tipo de veículo
+
+//Custos e Receitas
+// p[i][j][v]: Receita do frete [Origem][Destino][Veículo]
+p = [
+  [[0], [500]], 
+  [[450], [0]]  
+];
+
+// c[i][j][v]: Custo de veículo vazio
+c = [
+  [[5], [100]], 
+  [[100], [5]]  
+];
+
+// h[i][j][t]: Penalidade por backlog (atraso)
+h = [
+  [[0,0,0], [50,60,70]], 
+  [[40,50,60], [0,0,0]]  
+];
+
+// --- Operação ---
+// tv[i][j]: Tempo de viagem
+tv = [
+  [0, 1], 
+  [1, 0]
+];
+
+// K[j][t]: Capacidade de recebimento do terminal por período
+K = [
+  [5, 5, 5], 
+  [4, 4, 4]  
+];
+
+// m[i][v][t]: Veículos disponíveis no início
+m = [
+  [[10, 0, 0]], // Terminal 1 começa com 10 veículos
+  [[5, 0, 0]]   // Terminal 2 começa com 5 veículos
+];
+
+// A[i][j][v]: Rotas liberadas (1)
+A = [
+  [[1], [1]],
+  [[1], [1]]
+];
+
+// d[i][j][t]: Demanda NOMINAL (o que prevemos que vai acontecer)
+d = [
+  [[0,0,0], [2,3,1]], // De 1 p/ 2
+  [[1,2,2], [0,0,0]]  // De 2 p/ 1
+];
+
+// d_hat[i][j][t]: Desvio MÁXIMO da demanda (Incerteza)
+// Exemplo: Se d=3 e d_hat=2, a demanda real pode chegar a 5 no pior caso.
+d_hat = [
+  [[0,0,0], [1,2,1]], // A incerteza de 1 p/ 2
+  [[1,1,2], [0,0,0]]  // A incerteza de 2 p/ 1
+];
+
+// Gamma0: Orçamento de incerteza global para a Função Objetivo
+// Controla o quão conservador o modelo será em relação à perda de lucro pelo backlog.
+// Um valor 0 significa que ele não se protege; um valor maior aumenta a proteção.
+Gamma0 = 2.0; 
+
+// Gamma[i][j][t]: Orçamento de incerteza para as Restrições (Atendimento)
+// Quantos "piores casos" (d_hat) o modelo deve suportar até o período t?
+// Geralmente cresce com o tempo, pois o futuro é mais incerto.
+Gamma = [
+  [[0,0,0], [1,1,2]], // De 1 p/ 2: Suporta 1 desvio nos tempos 1 e 2, e até 2 desvios no tempo 3
+  [[1,1,2], [0,0,0]]  // De 2 p/ 1: Suporta 1 desvio nos tempos 1 e 2, e até 2 desvios no tempo 3
+];

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings version="2">
+  <category name="cplex">
+    
+    <setting name="tilim" value="3600.0"/>
+    
+    <setting name="epgap" value="0.0001"/>
+    
+    <setting name="threads" value="0"/>
+
+    <setting name="mipemphasis" value="0"/>
+
+  </category>
+</settings>
