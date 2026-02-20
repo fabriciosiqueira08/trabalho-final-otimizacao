@@ -12,7 +12,7 @@
             <ref name="trabalho-final-otimizacao.ops" type="setting">
 			</ref>
             			
-            <ref name="trabalho-final-otimizacao-caso-1.dat" type="data">
+            <ref name="trabalho-final-otimizacao-caso-1-normal.dat" type="data">
 			</ref>
             		
         </config>
@@ -25,7 +25,7 @@
             <ref name="trabalho-final-otimizacao.ops" type="setting">
 			</ref>
             			
-            <ref name="trabalho-final-otimizacao-caso-2.dat" type="data">
+            <ref name="trabalho-final-otimizacao-caso-2-normal.dat" type="data">
 			</ref>
             		
         </config>
